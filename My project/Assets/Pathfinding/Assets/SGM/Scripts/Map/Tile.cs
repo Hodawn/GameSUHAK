@@ -8,14 +8,11 @@ public class Tile : MonoBehaviour
     public enum TileType
     {
         Plains,
-        Wall,
-        Wood
+        Wall
     }
 
-    public GameObject _woodGO;
     public GameObject _wallGO;
     
-
     private Text _text;
     private TileType _tileType;
 
@@ -37,8 +34,16 @@ public class Tile : MonoBehaviour
         name = "Tile_" + x + "_" + y;
     }
 
-    public Color _Color { get => _renderer.material.color; set => _renderer.material.color = value; }
-    public string _Text { get => _text.text; set => _text.text = value; }
+    public Color _Color {
+        get => _renderer.material.color;
+        set => _renderer.material.color = value;
+    }
+
+    public string _Text {
+        get => _text.text;
+        set => _text.text = value;
+    }
+
     public TileType _TileType
     {
         get => _tileType;
@@ -48,20 +53,15 @@ public class Tile : MonoBehaviour
             switch (_tileType)
             {
                 case TileType.Plains:
-                    _woodGO.SetActive(false);
                     _wallGO.SetActive(false);
                     break;
                 case TileType.Wall:
-                    _woodGO.SetActive(false);
                     _wallGO.SetActive(true);
-                    break;
-                case TileType.Wood:
-                    _woodGO.SetActive(true);
-                    _wallGO.SetActive(false);
-                    break;
+                    break;                
             }
         }
     }
+
     public int _Cost
     {
         get
@@ -70,13 +70,12 @@ public class Tile : MonoBehaviour
             {
                 case TileType.Plains:
                     return 1;
-                case TileType.Wood:
-                    return 5;
                 default:
                     return 0;
             }
         }
     }
+
     public int _X => _x; 
     public int _Y => _y;
 }

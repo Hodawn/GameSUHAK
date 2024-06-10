@@ -24,8 +24,11 @@ public class PathTester : MonoBehaviour
     private void CalculatePath(Tile start, Tile end)
     {
         Queue<Tile> path = _pathfinding.FindPath(_startTile, _endTile);
+
         if (path == null)
+        {
             Debug.LogWarning("Goal not reachable");
+        }
         else
         {
             foreach (Tile t in path)
@@ -59,6 +62,7 @@ public class PathTester : MonoBehaviour
 
             RepaintMap();
         }
+
         if (Input.GetMouseButtonDown(1))
         {
             Tile tileUnderMouse = GetTileUnderMouse();
@@ -75,6 +79,7 @@ public class PathTester : MonoBehaviour
             }
             RepaintMap();
         }
+
         if (Input.GetKey(KeyCode.Q))
         {
             Tile tileUnderMouse = GetTileUnderMouse();
@@ -84,15 +89,7 @@ public class PathTester : MonoBehaviour
                 RepaintMap();
             }
         }
-        if (Input.GetKey(KeyCode.W))
-        {
-            Tile tileUnderMouse = GetTileUnderMouse();
-            if (tileUnderMouse != null)
-            {
-                tileUnderMouse._TileType = Tile.TileType.Wood;
-                RepaintMap();
-            }
-        }
+
         if (Input.GetKey(KeyCode.E))
         {
             Tile tileUnderMouse = GetTileUnderMouse();
@@ -112,7 +109,9 @@ public class PathTester : MonoBehaviour
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
+        {
             RepaintMap();
+        }
 
         if(Input.GetKeyDown(KeyCode.F))
         {
